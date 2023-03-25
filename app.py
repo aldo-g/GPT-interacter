@@ -1,9 +1,15 @@
 import httpx
 import asyncio
 from fastapi import FastAPI
+import openai
+import os
+from dotenv import load_dotenv
 
 app = FastAPI()
-openai_api_key = "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"
+
+load_dotenv()
+
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 @app.get("/openai/{text}")
 async def get_openai_response(text: str):
@@ -19,3 +25,10 @@ async def get_openai_response(text: str):
         }
         response = await client.post("https://api.openai.com/v1/completions", headers=headers, json=data)
         return response.json()
+
+def ping_openai_api():
+    try:
+        models = openai.Model.list()
+        return True
+    except Exception as e:
+        return False
