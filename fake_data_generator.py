@@ -11,7 +11,7 @@ def generate_fake_cv():
         'job_title': fake.job(),
         'skills': [fake.word() for _ in range(5)],
         'education': {
-            'university': fake.university(),
+            'university': fake.sentence(nb_words=3),
             'degree': fake.job(),
             'graduation_year': fake.year()
         },
