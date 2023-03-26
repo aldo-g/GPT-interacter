@@ -13,6 +13,7 @@ uvicorn = "^0.21.1"
 certifi = "^2022.12.7"
 openai = "^0.27.2"
 python-dotenv = "^1.0.0"
+faker = "^18.3.1"
 
 [build-system]
 requires = ["poetry-core"]
