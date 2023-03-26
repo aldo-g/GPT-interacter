@@ -4,6 +4,7 @@ from fastapi import FastAPI
 import openai
 import os
 from dotenv import load_dotenv
+from doc_extractor import cv_text
 
 app = FastAPI()
 
@@ -11,24 +12,17 @@ load_dotenv()
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
-@app.get("/openai/{text}")
-async def get_openai_response(text: str):
-    async with httpx.AsyncClient() as client:
-        headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {openai_api_key}"
-        }
-        data = {
-            "prompt": text,
-            "max_tokens": 50,
-            "temperature": 0.7
-        }
-        response = await client.post("https://api.openai.com/v1/completions", headers=headers, json=data)
-        return response.json()
+def analyze_cv(cv_text):
+    prompt = f"Please analyze the quality of the following CV:\n\n{cv_text}\n\nQuality analysis:"
+    response = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=prompt,
+        max_tokens=150,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    return response.choices[0].text.strip()
 
-def ping_openai_api():
-    try:
-        models = openai.Model.list()
-        return True
-    except Exception as e:
-        return False
+analysis = analyze_cv(cv_text)
+print("CV Analysis:", analysis)
