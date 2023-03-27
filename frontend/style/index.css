@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+button {
+    display: block;
+    margin: 0 auto 1rem;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background-color: #3b7ed0;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2e67a8;
+}
+
+#cv-analysis {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    line-height: 1.4;
+}

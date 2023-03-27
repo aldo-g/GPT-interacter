@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CV Analyzer</title>
+</head>
+<body>
+    <div class="container">
+        <h1>CV Analyzer</h1>
+        <input type="file" id="cv-file" accept=".docx" />
+        <button onclick="analyzeCV()">Analyze CV</button>
+        <div id="cv-analysis"></div>
+    </div>
+
+    <script>
+        async function analyzeCV() {
+            const fileInput = document.getElementById("cv-file");
+            const formData = new FormData();
+            formData.append("cv", fileInput.files[0]);
+
+            const response = await fetch("/analyze_cv/", {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await response.json();
+            document.getElementById("cv-analysis").innerText = result.cv_analysis || result.error;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze CV</title>
+    <link rel="stylesheet" href="/frontend/style/analyze_cv.css">
+</head>
+<body>
+    <h1>Analyze CV</h1>
+    <form action="/analyze_cv/" method="post" enctype="multipart/form-data">
+        <label for="cv">Upload your CV:</label>
+        <input type="file" id="cv" name="cv" accept=".docx">
+        <br>
+        <button type="submit">Analyze</button>
+    </form>
+</body>
+</html>
